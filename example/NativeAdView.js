@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
-import {
-  withNativeAd,
-  TriggerableView,
-} from 'react-native-ad-manager';
+import {withNativeAd, TriggerableView} from 'react-native-ad-manager-bidding';
 
 export class NativeAdView extends Component {
   render() {

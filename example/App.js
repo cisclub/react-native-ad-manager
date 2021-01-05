@@ -8,7 +8,11 @@ import {
   View,
   RefreshControl,
 } from 'react-native';
-import {Interstitial, Banner, NativeAdsManager} from 'react-native-ad-manager';
+import {
+  Interstitial,
+  Banner,
+  NativeAdsManager,
+} from 'react-native-ad-manager-bidding';
 import NativeAdView from './NativeAdView';
 
 const BannerExample = ({style, title, children, ...props}) => (

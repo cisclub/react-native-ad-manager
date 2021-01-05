@@ -13,7 +13,7 @@
   "dependencies": {
     "react": "16.9.0",
     "react-native": "0.61.4",
-    "react-native-ad-manager": "file:../"
+    "react-native-ad-manager-bidding": "file:../"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
