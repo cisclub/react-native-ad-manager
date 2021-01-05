@@ -1,8 +1,8 @@
 {
-  "name": "react-native-ad-manager",
-  "title": "React Native Ad Manager",
+  "name": "react-native-ad-manager-bidding",
+  "title": "React Native Ad Manager With Bidding",
   "version": "1.2.1",
-  "description": "A react-native component for Google Ad Manager banners, interstitials and native ads.",
+  "description": "A react-native component for Google Ad Manager banners, interstitials and native ads with ads bidding",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NZME/react-native-ad-manager.git",
-    "baseUrl": "https://github.com/NZME/react-native-ad-manager"
+    "url": "git+https://github.com/cisclub/react-native-ad-manager-bidding.git",
+    "baseUrl": "https://github.com/cisclub/react-native-ad-manager-bidding"
   },
   "keywords": [
     "react-native"
   ],
   "author": {
-    "name": "Matej Drobnic",
-    "email": "matej.dr@gmail.com"
+    "name": "cisclub",
+    "email": ""
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",

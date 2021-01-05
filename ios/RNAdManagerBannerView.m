@@ -8,6 +8,8 @@
 #include "RCTConvert+GADAdSize.h"
 #import "RNAdManagerUtils.h"
 
+@import CriteoPublisherSdk;
+
 @interface RNAdManagerBannerView () <GADBannerViewDelegate, GADAdSizeDelegate, GADAppEventDelegate>
 
 @property (nonatomic, strong) DFPBannerView *bannerView;
@@ -135,7 +137,17 @@
 
     bannerView.validAdSizes = _validAdSizes;
 
-    [bannerView loadRequest:request];
+    // Inject Criteo bidding
+    CRBannerAdUnit *cretioAdBanner = [[CRBannerAdUnit alloc] initWithAdUnitId:_adUnitID size:adSize.size];
+    [[Criteo sharedCriteo] loadBidForAdUnit:cretioAdBanner responseHandler:^(CRBid * _Nullable bid) {
+        if (bid != nil) {
+            // add Criteo bids into Ad Manager request
+            [[Criteo sharedCriteo] enrichAdObject:request withBid:bid];
+        }
+
+        // load Banner ad
+        [bannerView loadRequest:request];
+    }];
 
     [self addSubview:bannerView];
 
