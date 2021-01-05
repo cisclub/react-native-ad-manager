@@ -1,4 +1,6 @@
-# react-native-ad-manager
+# react-native-ad-manager-bidding
+
+This is a fork from https://github.com/NZME/react-native-ad-manager to add Cretio bidding https://publisherdocs.criteotilt.com/app/ios/app-bidding/google-ad-manager/#sdk-initialization
 
 A react-native module for Google Ad Manager Banners, Interstitials and Native ads.
 
