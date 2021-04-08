@@ -71,26 +71,26 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
     public static final String SECTION_NATIVE_5 = "/1019334/GULFNEWS/Gulfnews_App/gulfnews_newapp_native/gulfnews_newapp_sections_native5";
     public static final String SECTION_NATIVE_6 = "/1019334/GULFNEWS/Gulfnews_App/gulfnews_newapp_native/gulfnews_newapp_sections_native6";
 
-    public static final BannerAdUnit CRITEO_HOME_LEADER = new BannerAdUnit(HOME_LEADER, new com.criteo.publisher.model.AdSize(320, 50));
-    public static final BannerAdUnit CRITEO_HOME_BANNER = new BannerAdUnit(HOME_BANNER, new com.criteo.publisher.model.AdSize(320, 250));
+    public static final BannerAdUnit CRITEO_HOME_LEADER = new BannerAdUnit(HOME_LEADER, new com.criteo.publisher.model.AdSize (-1, -2));
+    public static final BannerAdUnit CRITEO_HOME_BANNER = new BannerAdUnit(HOME_BANNER, new com.criteo.publisher.model.AdSize(300, 250));
+    public static final BannerAdUnit CRITEO_HOME_BANNER_TABLET = new BannerAdUnit(HOME_BANNER, new com.criteo.publisher.model.AdSize (-1, -2));
 
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_1 = new BannerAdUnit(HOME_NATIVE_1, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_2 = new BannerAdUnit(HOME_NATIVE_2, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_3 = new BannerAdUnit(HOME_NATIVE_3, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_4 = new BannerAdUnit(HOME_NATIVE_4, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_5 = new BannerAdUnit(HOME_NATIVE_5, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_6 = new BannerAdUnit(HOME_NATIVE_6, new com.criteo.publisher.model.AdSize(300, 250));
+    public static final BannerAdUnit CRITEO_HOME_NATIVE_1 = new BannerAdUnit(HOME_NATIVE_1, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_HOME_NATIVE_2 = new BannerAdUnit(HOME_NATIVE_2, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_HOME_NATIVE_3 = new BannerAdUnit(HOME_NATIVE_3, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_HOME_NATIVE_4 = new BannerAdUnit(HOME_NATIVE_4, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_HOME_NATIVE_5 = new BannerAdUnit(HOME_NATIVE_5, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_HOME_NATIVE_6 = new BannerAdUnit(HOME_NATIVE_6, new com.criteo.publisher.model.AdSize(-3, -4));
 
-    public static final BannerAdUnit CRITEO_SECTION_LEADER = new BannerAdUnit(SECTION_LEADER, new com.criteo.publisher.model.AdSize(320, 50));
-    public static final BannerAdUnit CRITEO_SECTION_BANNER_1 = new BannerAdUnit(SECTION_BANNER_1, new com.criteo.publisher.model.AdSize(320, 250));
-    public static final BannerAdUnit CRITEO_SECTION_BANNER_2 = new BannerAdUnit(SECTION_BANNER_2, new com.criteo.publisher.model.AdSize(320, 250));
-
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_1 = new BannerAdUnit(SECTION_NATIVE_1, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_2 = new BannerAdUnit(SECTION_NATIVE_2, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_3 = new BannerAdUnit(SECTION_NATIVE_3, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_4 = new BannerAdUnit(SECTION_NATIVE_4, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_5 = new BannerAdUnit(SECTION_NATIVE_5, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_6 = new BannerAdUnit(SECTION_NATIVE_6, new com.criteo.publisher.model.AdSize(300, 250));
+    public static final BannerAdUnit CRITEO_SECTION_LEADER = new BannerAdUnit(SECTION_LEADER, new com.criteo.publisher.model.AdSize(-1, -2));
+    public static final BannerAdUnit CRITEO_SECTION_BANNER_1 = new BannerAdUnit(SECTION_BANNER_1, new com.criteo.publisher.model.AdSize(300, 250));
+    public static final BannerAdUnit CRITEO_SECTION_BANNER_2 = new BannerAdUnit(SECTION_BANNER_2, new com.criteo.publisher.model.AdSize(300, 250));
+    public static final BannerAdUnit CRITEO_SECTION_NATIVE_1 = new BannerAdUnit(SECTION_NATIVE_1, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_SECTION_NATIVE_2 = new BannerAdUnit(SECTION_NATIVE_2, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_SECTION_NATIVE_3 = new BannerAdUnit(SECTION_NATIVE_3, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_SECTION_NATIVE_4 = new BannerAdUnit(SECTION_NATIVE_4, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_SECTION_NATIVE_5 = new BannerAdUnit(SECTION_NATIVE_5, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final BannerAdUnit CRITEO_SECTION_NATIVE_6 = new BannerAdUnit(SECTION_NATIVE_6, new com.criteo.publisher.model.AdSize(-3, -4));
 
     public BannerAdView(final Context context, ReactApplicationContext applicationContext) {
         super(context);
@@ -210,8 +210,14 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
         BannerAdUnit bannerAdUnit;
 
         switch (adUnitID) {
+            case HOME_LEADER:
+                bannerAdUnit = CRITEO_HOME_LEADER;
+                break;
             case HOME_BANNER:
-                bannerAdUnit = CRITEO_HOME_BANNER;
+                if(this.adView.getAdSize() == AdSize.BANNER)
+                    bannerAdUnit = CRITEO_HOME_BANNER;
+                else
+                    bannerAdUnit = CRITEO_HOME_BANNER_TABLET;
                 break;
             case HOME_NATIVE_1:
                 bannerAdUnit = CRITEO_HOME_NATIVE_1;
@@ -232,31 +238,31 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
                 bannerAdUnit = CRITEO_HOME_NATIVE_6;
                 break;
             case SECTION_LEADER:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_LEADER;
                 break;
             case SECTION_BANNER_1:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_BANNER_1;
                 break;
             case SECTION_BANNER_2:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_BANNER_2;
                 break;
             case SECTION_NATIVE_1:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_NATIVE_1;
                 break;
             case SECTION_NATIVE_2:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_NATIVE_2;
                 break;
             case SECTION_NATIVE_3:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_NATIVE_3;
                 break;
             case SECTION_NATIVE_4:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_NATIVE_4;
                 break;
             case SECTION_NATIVE_5:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_NATIVE_5;
                 break;
             case SECTION_NATIVE_6:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+                bannerAdUnit = CRITEO_SECTION_NATIVE_6;
                 break;
             default:
                 bannerAdUnit = CRITEO_HOME_LEADER;
@@ -265,7 +271,6 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
         Criteo.getInstance().loadBid(bannerAdUnit, new BidResponseListener() {
             @Override
             public void onResponse(@Nullable Bid bid) {
-
                 PublisherAdRequest.Builder adRequestBuilder = new PublisherAdRequest.Builder();
                 if (testDevices != null) {
                     for (int i = 0; i < testDevices.length; i++) {
