@@ -331,14 +331,11 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
                     }
                 }
 
-                PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
-
                 if (bid != null) {
-                    Criteo.getInstance().enrichAdObjectWithBid(builder, bid);
+                    Criteo.getInstance().enrichAdObjectWithBid(adRequestBuilder, bid);
                 }
 
-                PublisherAdRequest adRequest = builder.build();
-                adView.loadAd(adRequest);
+                adView.loadAd(adRequestBuilder.build());
             }
         });
     }
