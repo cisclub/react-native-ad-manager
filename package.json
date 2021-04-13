@@ -1,7 +1,7 @@
 {
   "name": "react-native-ad-manager-bidding",
   "title": "React Native Ad Manager With Bidding",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A react-native component for Google Ad Manager banners, interstitials and native ads with ads bidding",
   "main": "index.js",
   "scripts": {
