@@ -10,6 +10,12 @@
 
 @import CriteoPublisherSdk;
 
+@interface NSObject (BannerAdUnit)
+
+-(CRBannerAdUnit *)bannerAdUnbitWithID:(NSString *)ID;
+
+@end
+
 @interface RNAdManagerBannerView () <GADBannerViewDelegate, GADAdSizeDelegate, GADAppEventDelegate>
 
 @property (nonatomic, strong) DFPBannerView *bannerView;
@@ -138,7 +144,7 @@
     bannerView.validAdSizes = _validAdSizes;
 
     // Inject Criteo bidding
-    CRBannerAdUnit *cretioAdBanner = [[CRBannerAdUnit alloc] initWithAdUnitId:_adUnitID size:adSize.size];
+    CRBannerAdUnit *cretioAdBanner = [self getBannerAdUnitWithID:bannerView.adUnitID];
     [[Criteo sharedCriteo] loadBidForAdUnit:cretioAdBanner responseHandler:^(CRBid * _Nullable bid) {
         if (bid != nil) {
             // add Criteo bids into Ad Manager request
@@ -154,6 +160,13 @@
     _bannerView = bannerView;
 }
 
+- (CRBannerAdUnit *)getBannerAdUnitWithID:(NSString *)ID {
+    NSObject *appDelegate = [[UIApplication sharedApplication] delegate];
+    CRBannerAdUnit *adUnit = [appDelegate bannerAdUnbitWithID:ID];
+    
+    return adUnit;
+}
+
 - (void)loadBanner {
     [self createViewIfCan];
 }
@@ -163,6 +176,12 @@
 /// Tells the delegate an ad request loaded an ad.
 - (void)adViewDidReceiveAd:(DFPBannerView *)adView
 {
+    if(adView.bounds.size.width == 0) {
+        [adView setFrame:CGRectMake(adView.frame.origin.x,
+                                           adView.frame.origin.y,
+                                           [UIScreen mainScreen].bounds.size.width,
+                                    adView.bounds.size.height)];
+    }
     if (self.onSizeChange) {
         self.onSizeChange(@{
                             @"type": @"banner",
