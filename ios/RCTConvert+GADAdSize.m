@@ -20,9 +20,11 @@
     } else if ([adSize isEqualToString:@"mediumRectangle"]) {
         return kGADAdSizeMediumRectangle;
     } else if ([adSize isEqualToString:@"smartBannerPortrait"]) {
-        return kGADAdSizeSmartBannerPortrait;
+        CGFloat height = ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) ? 90 : 50;
+        return GADAdSizeFromCGSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, height));
     } else if ([adSize isEqualToString:@"smartBannerLandscape"]) {
-        return kGADAdSizeSmartBannerLandscape;
+        CGFloat height = ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) ? 90 : 32;
+        return GADAdSizeFromCGSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, height));
     } else if ([adSize isEqualToString:@"300x600"]) {
         return GADAdSizeFromCGSize(CGSizeMake(300, 600));
     } else if ([adSize isEqualToString:@"300x250"]) {
