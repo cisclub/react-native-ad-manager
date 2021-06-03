@@ -30,6 +30,7 @@ import com.criteo.publisher.Bid;
 import com.criteo.publisher.BidResponseListener;
 import com.criteo.publisher.Criteo;
 import com.criteo.publisher.model.BannerAdUnit;
+import com.criteo.publisher.model.NativeAdUnit;
 
 public class BannerAdView extends ReactViewGroup implements AppEventListener, LifecycleEventListener {
 
@@ -41,7 +42,7 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
     AdSize adSize;
 
     // Targeting
-    Boolean hasTargeting = false;
+    Boolean hasTargeting = true;
     CustomTargeting[] customTargeting;
     String[] categoryExclusions;
     String[] keywords;
@@ -71,26 +72,27 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
     public static final String SECTION_NATIVE_5 = "/1019334/GULFNEWS/Gulfnews_App/gulfnews_newapp_native/gulfnews_newapp_sections_native5";
     public static final String SECTION_NATIVE_6 = "/1019334/GULFNEWS/Gulfnews_App/gulfnews_newapp_native/gulfnews_newapp_sections_native6";
 
-    public static final BannerAdUnit CRITEO_HOME_LEADER = new BannerAdUnit(HOME_LEADER, new com.criteo.publisher.model.AdSize (-1, -2));
+    public static final BannerAdUnit CRITEO_HOME_LEADER = new BannerAdUnit(HOME_LEADER, new com.criteo.publisher.model.AdSize (320, 50));
     public static final BannerAdUnit CRITEO_HOME_BANNER = new BannerAdUnit(HOME_BANNER, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_HOME_BANNER_TABLET = new BannerAdUnit(HOME_BANNER, new com.criteo.publisher.model.AdSize (-1, -2));
+    public static final BannerAdUnit CRITEO_HOME_BANNER_TABLET = new BannerAdUnit(HOME_BANNER, new com.criteo.publisher.model.AdSize (320, 50));
 
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_1 = new BannerAdUnit(HOME_NATIVE_1, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_2 = new BannerAdUnit(HOME_NATIVE_2, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_3 = new BannerAdUnit(HOME_NATIVE_3, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_4 = new BannerAdUnit(HOME_NATIVE_4, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_5 = new BannerAdUnit(HOME_NATIVE_5, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_HOME_NATIVE_6 = new BannerAdUnit(HOME_NATIVE_6, new com.criteo.publisher.model.AdSize(-3, -4));
+    public static final NativeAdUnit CRITEO_HOME_NATIVE_1 = new NativeAdUnit(HOME_NATIVE_1);
+    public static final NativeAdUnit CRITEO_HOME_NATIVE_2 = new NativeAdUnit(HOME_NATIVE_2);
+    public static final NativeAdUnit CRITEO_HOME_NATIVE_3 = new NativeAdUnit(HOME_NATIVE_3);
+    public static final NativeAdUnit CRITEO_HOME_NATIVE_4 = new NativeAdUnit(HOME_NATIVE_4);
+    public static final NativeAdUnit CRITEO_HOME_NATIVE_5 = new NativeAdUnit(HOME_NATIVE_5);
+    public static final NativeAdUnit CRITEO_HOME_NATIVE_6 = new NativeAdUnit(HOME_NATIVE_6);
 
-    public static final BannerAdUnit CRITEO_SECTION_LEADER = new BannerAdUnit(SECTION_LEADER, new com.criteo.publisher.model.AdSize(-1, -2));
+    public static final BannerAdUnit CRITEO_SECTION_LEADER = new BannerAdUnit(SECTION_LEADER, new com.criteo.publisher.model.AdSize(320, 50));
     public static final BannerAdUnit CRITEO_SECTION_BANNER_1 = new BannerAdUnit(SECTION_BANNER_1, new com.criteo.publisher.model.AdSize(300, 250));
     public static final BannerAdUnit CRITEO_SECTION_BANNER_2 = new BannerAdUnit(SECTION_BANNER_2, new com.criteo.publisher.model.AdSize(300, 250));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_1 = new BannerAdUnit(SECTION_NATIVE_1, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_2 = new BannerAdUnit(SECTION_NATIVE_2, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_3 = new BannerAdUnit(SECTION_NATIVE_3, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_4 = new BannerAdUnit(SECTION_NATIVE_4, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_5 = new BannerAdUnit(SECTION_NATIVE_5, new com.criteo.publisher.model.AdSize(-3, -4));
-    public static final BannerAdUnit CRITEO_SECTION_NATIVE_6 = new BannerAdUnit(SECTION_NATIVE_6, new com.criteo.publisher.model.AdSize(-3, -4));
+
+    public static final NativeAdUnit CRITEO_SECTION_NATIVE_1 = new NativeAdUnit(SECTION_NATIVE_1);
+    public static final NativeAdUnit CRITEO_SECTION_NATIVE_2 = new NativeAdUnit(SECTION_NATIVE_2);
+    public static final NativeAdUnit CRITEO_SECTION_NATIVE_3 = new NativeAdUnit(SECTION_NATIVE_3);
+    public static final NativeAdUnit CRITEO_SECTION_NATIVE_4 = new NativeAdUnit(SECTION_NATIVE_4);
+    public static final NativeAdUnit CRITEO_SECTION_NATIVE_5 = new NativeAdUnit(SECTION_NATIVE_5);
+    public static final NativeAdUnit CRITEO_SECTION_NATIVE_6 = new NativeAdUnit(SECTION_NATIVE_6);
 
     public BannerAdView(final Context context, ReactApplicationContext applicationContext) {
         super(context);
@@ -207,137 +209,173 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
         AdSize[] adSizesArray = adSizes.toArray(new AdSize[adSizes.size()]);
         this.adView.setAdSizes(adSizesArray);
 
-        BannerAdUnit bannerAdUnit;
+        boolean isNative = false;
 
-        switch (adUnitID) {
-            case HOME_LEADER:
-                bannerAdUnit = CRITEO_HOME_LEADER;
-                break;
-            case HOME_BANNER:
-                if(this.adView.getAdSize() == AdSize.BANNER)
-                    bannerAdUnit = CRITEO_HOME_BANNER;
-                else
-                    bannerAdUnit = CRITEO_HOME_BANNER_TABLET;
-                break;
-            case HOME_NATIVE_1:
-                bannerAdUnit = CRITEO_HOME_NATIVE_1;
-                break;
-            case HOME_NATIVE_2:
-                bannerAdUnit = CRITEO_HOME_NATIVE_2;
-                break;
-            case HOME_NATIVE_3:
-                bannerAdUnit = CRITEO_HOME_NATIVE_3;
-                break;
-            case HOME_NATIVE_4:
-                bannerAdUnit = CRITEO_HOME_NATIVE_4;
-                break;
-            case HOME_NATIVE_5:
-                bannerAdUnit = CRITEO_HOME_NATIVE_5;
-                break;
-            case HOME_NATIVE_6:
-                bannerAdUnit = CRITEO_HOME_NATIVE_6;
-                break;
-            case SECTION_LEADER:
-                bannerAdUnit = CRITEO_SECTION_LEADER;
-                break;
-            case SECTION_BANNER_1:
-                bannerAdUnit = CRITEO_SECTION_BANNER_1;
-                break;
-            case SECTION_BANNER_2:
-                bannerAdUnit = CRITEO_SECTION_BANNER_2;
-                break;
-            case SECTION_NATIVE_1:
-                bannerAdUnit = CRITEO_SECTION_NATIVE_1;
-                break;
-            case SECTION_NATIVE_2:
-                bannerAdUnit = CRITEO_SECTION_NATIVE_2;
-                break;
-            case SECTION_NATIVE_3:
-                bannerAdUnit = CRITEO_SECTION_NATIVE_3;
-                break;
-            case SECTION_NATIVE_4:
-                bannerAdUnit = CRITEO_SECTION_NATIVE_4;
-                break;
-            case SECTION_NATIVE_5:
-                bannerAdUnit = CRITEO_SECTION_NATIVE_5;
-                break;
-            case SECTION_NATIVE_6:
-                bannerAdUnit = CRITEO_SECTION_NATIVE_6;
-                break;
-            default:
-                bannerAdUnit = CRITEO_HOME_LEADER;
+        if(adUnitID == HOME_NATIVE_1 ||
+                adUnitID == HOME_NATIVE_2 ||
+                adUnitID == HOME_NATIVE_3 ||
+                adUnitID == HOME_NATIVE_4 ||
+                adUnitID == HOME_NATIVE_5 ||
+                adUnitID == HOME_NATIVE_6 ||
+                adUnitID == SECTION_NATIVE_1 ||
+                adUnitID == SECTION_NATIVE_2 ||
+                adUnitID == SECTION_NATIVE_3 ||
+                adUnitID == SECTION_NATIVE_4 ||
+                adUnitID == SECTION_NATIVE_5 ||
+                adUnitID == SECTION_NATIVE_6
+        ) {
+            isNative = true;
         }
 
-        Criteo.getInstance().loadBid(bannerAdUnit, new BidResponseListener() {
-            @Override
-            public void onResponse(@Nullable Bid bid) {
-                PublisherAdRequest.Builder adRequestBuilder = new PublisherAdRequest.Builder();
-                if (testDevices != null) {
-                    for (int i = 0; i < testDevices.length; i++) {
-                        String testDevice = testDevices[i];
-                        if (testDevice == "SIMULATOR") {
-                            testDevice = PublisherAdRequest.DEVICE_ID_EMULATOR;
-                        }
-                        adRequestBuilder.addTestDevice(testDevice);
-                    }
-                }
-
-                if (correlator == null) {
-                    correlator = (String) Targeting.getCorelator(adUnitID);
-                }
-                Bundle bundle = new Bundle();
-                bundle.putString("correlator", correlator);
-
-                adRequestBuilder.addNetworkExtrasBundle(AdMobAdapter.class, bundle);
-
-                // Targeting
-                if (hasTargeting) {
-                    if (customTargeting != null && customTargeting.length > 0) {
-                        for (int i = 0; i < customTargeting.length; i++) {
-                            String key = customTargeting[i].key;
-                            if (!key.isEmpty()) {
-                                if (customTargeting[i].value != null && !customTargeting[i].value.isEmpty()) {
-                                    adRequestBuilder.addCustomTargeting(key, customTargeting[i].value);
-                                } else if (customTargeting[i].values != null && !customTargeting[i].values.isEmpty()) {
-                                    adRequestBuilder.addCustomTargeting(key, customTargeting[i].values);
-                                }
-                            }
-                        }
-                    }
-                    if (categoryExclusions != null && categoryExclusions.length > 0) {
-                        for (int i = 0; i < categoryExclusions.length; i++) {
-                            String categoryExclusion = categoryExclusions[i];
-                            if (!categoryExclusion.isEmpty()) {
-                                adRequestBuilder.addCategoryExclusion(categoryExclusion);
-                            }
-                        }
-                    }
-                    if (keywords != null && keywords.length > 0) {
-                        for (int i = 0; i < keywords.length; i++) {
-                            String keyword = keywords[i];
-                            if (!keyword.isEmpty()) {
-                                adRequestBuilder.addKeyword(keyword);
-                            }
-                        }
-                    }
-                    if (contentURL != null) {
-                        adRequestBuilder.setContentUrl(contentURL);
-                    }
-                    if (publisherProvidedID != null) {
-                        adRequestBuilder.setPublisherProvidedId(publisherProvidedID);
-                    }
-                    if (location != null) {
-                        adRequestBuilder.setLocation(location);
-                    }
-                }
-
-                if (bid != null) {
-                    Criteo.getInstance().enrichAdObjectWithBid(adRequestBuilder, bid);
-                }
-
-                adView.loadAd(adRequestBuilder.build());
+        if(isNative) {
+            NativeAdUnit nativeAdUnit;
+            switch (adUnitID) {
+                case HOME_NATIVE_1:
+                    nativeAdUnit = CRITEO_HOME_NATIVE_1;
+                    break;
+                case HOME_NATIVE_2:
+                    nativeAdUnit = CRITEO_HOME_NATIVE_2;
+                    break;
+                case HOME_NATIVE_3:
+                    nativeAdUnit = CRITEO_HOME_NATIVE_3;
+                    break;
+                case HOME_NATIVE_4:
+                    nativeAdUnit = CRITEO_HOME_NATIVE_4;
+                    break;
+                case HOME_NATIVE_5:
+                    nativeAdUnit = CRITEO_HOME_NATIVE_5;
+                    break;
+                case HOME_NATIVE_6:
+                    nativeAdUnit = CRITEO_HOME_NATIVE_6;
+                    break;
+                case SECTION_NATIVE_1:
+                    nativeAdUnit = CRITEO_SECTION_NATIVE_1;
+                    break;
+                case SECTION_NATIVE_2:
+                    nativeAdUnit = CRITEO_SECTION_NATIVE_2;
+                    break;
+                case SECTION_NATIVE_3:
+                    nativeAdUnit = CRITEO_SECTION_NATIVE_3;
+                    break;
+                case SECTION_NATIVE_4:
+                    nativeAdUnit = CRITEO_SECTION_NATIVE_4;
+                    break;
+                case SECTION_NATIVE_5:
+                    nativeAdUnit = CRITEO_SECTION_NATIVE_5;
+                    break;
+                case SECTION_NATIVE_6:
+                    nativeAdUnit = CRITEO_SECTION_NATIVE_6;
+                    break;
+                default:
+                    nativeAdUnit = CRITEO_HOME_NATIVE_1;
             }
-        });
+
+            Criteo.getInstance().loadBid(nativeAdUnit, new BidResponseListener() {
+                @Override
+                public void onResponse(@Nullable Bid bid) {
+                    LoadBid(bid);
+                }
+            });
+        }
+        else {
+            BannerAdUnit bannerAdUnit;
+
+            switch (adUnitID) {
+                case HOME_LEADER:
+                    bannerAdUnit = CRITEO_HOME_LEADER;
+                    break;
+                case HOME_BANNER:
+                    if (this.adView.getAdSize() == AdSize.BANNER)
+                        bannerAdUnit = CRITEO_HOME_BANNER_TABLET;
+                    else
+                        bannerAdUnit = CRITEO_HOME_BANNER;
+                    break;
+                case SECTION_LEADER:
+                    bannerAdUnit = CRITEO_SECTION_LEADER;
+                    break;
+                case SECTION_BANNER_1:
+                    bannerAdUnit = CRITEO_SECTION_BANNER_1;
+                    break;
+                case SECTION_BANNER_2:
+                    bannerAdUnit = CRITEO_SECTION_BANNER_2;
+                    break;
+                default:
+                    bannerAdUnit = CRITEO_HOME_LEADER;
+            }
+            Criteo.getInstance().loadBid(bannerAdUnit, new BidResponseListener() {
+                @Override
+                public void onResponse(@Nullable Bid bid) {
+                    LoadBid(bid);
+                }
+            });
+        }
+    }
+
+    public void LoadBid(@Nullable Bid bid) {
+        PublisherAdRequest.Builder adRequestBuilder = new PublisherAdRequest.Builder();
+        if (bid != null) {
+            Criteo.getInstance().enrichAdObjectWithBid(adRequestBuilder, bid);
+        }
+
+        if (testDevices != null) {
+            for (int i = 0; i < testDevices.length; i++) {
+                String testDevice = testDevices[i];
+                if (testDevice == "SIMULATOR") {
+                    testDevice = PublisherAdRequest.DEVICE_ID_EMULATOR;
+                }
+                adRequestBuilder.addTestDevice(testDevice);
+            }
+        }
+
+        if (correlator == null) {
+            correlator = (String) Targeting.getCorelator(adUnitID);
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString("correlator", correlator);
+
+        adRequestBuilder.addNetworkExtrasBundle(AdMobAdapter.class, bundle);
+
+        // Targeting
+        if (hasTargeting) {
+            if (customTargeting != null && customTargeting.length > 0) {
+                for (int i = 0; i < customTargeting.length; i++) {
+                    String key = customTargeting[i].key;
+                    if (!key.isEmpty()) {
+                        if (customTargeting[i].value != null && !customTargeting[i].value.isEmpty()) {
+                            adRequestBuilder.addCustomTargeting(key, customTargeting[i].value);
+                        } else if (customTargeting[i].values != null && !customTargeting[i].values.isEmpty()) {
+                            adRequestBuilder.addCustomTargeting(key, customTargeting[i].values);
+                        }
+                    }
+                }
+            }
+            if (categoryExclusions != null && categoryExclusions.length > 0) {
+                for (int i = 0; i < categoryExclusions.length; i++) {
+                    String categoryExclusion = categoryExclusions[i];
+                    if (!categoryExclusion.isEmpty()) {
+                        adRequestBuilder.addCategoryExclusion(categoryExclusion);
+                    }
+                }
+            }
+            if (keywords != null && keywords.length > 0) {
+                for (int i = 0; i < keywords.length; i++) {
+                    String keyword = keywords[i];
+                    if (!keyword.isEmpty()) {
+                        adRequestBuilder.addKeyword(keyword);
+                    }
+                }
+            }
+            if (contentURL != null) {
+                adRequestBuilder.setContentUrl(contentURL);
+            }
+            if (publisherProvidedID != null) {
+                adRequestBuilder.setPublisherProvidedId(publisherProvidedID);
+            }
+            if (location != null) {
+                adRequestBuilder.setLocation(location);
+            }
+        }
+        adView.loadAd(adRequestBuilder.build());
     }
 
     public void setAdUnitID(String adUnitID) {
