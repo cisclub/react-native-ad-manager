@@ -205,9 +205,9 @@ public class RNAdManagerBannerViewManager extends ViewGroupManager<BannerAdView>
             case "leaderBoard":
                 return AdSize.LEADERBOARD;
             case "smartBannerPortrait":
-                return AdSize.SMART_BANNER;
+                return AdSize.BANNER;
             case "smartBannerLandscape":
-                return AdSize.SMART_BANNER;
+                return AdSize.BANNER;
             case "smartBanner":
                 return AdSize.SMART_BANNER;
             case "300x600":
