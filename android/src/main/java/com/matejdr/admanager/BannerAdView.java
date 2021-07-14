@@ -11,18 +11,20 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.LifecycleEventListener;
-import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.views.view.ReactViewGroup;
 import com.google.ads.mediation.admob.AdMobAdapter;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.doubleclick.AppEventListener;
-import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.ResponseInfo;
+import com.google.android.gms.ads.admanager.AdManagerAdRequest;
+import com.google.android.gms.ads.admanager.AdManagerAdView;
 import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.doubleclick.PublisherAdView;
 
 import java.util.ArrayList;
 
+import com.google.android.gms.ads.admanager.AppEventListener;
 import com.matejdr.admanager.customClasses.CustomTargeting;
 import com.matejdr.admanager.utils.Targeting;
 
@@ -34,7 +36,7 @@ import com.criteo.publisher.model.NativeAdUnit;
 
 public class BannerAdView extends ReactViewGroup implements AppEventListener, LifecycleEventListener {
 
-    protected PublisherAdView adView;
+    protected AdManagerAdView adView;
 
     String[] testDevices;
     AdSize[] validAdSizes;
@@ -104,7 +106,7 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
         if (this.adView != null) this.adView.destroy();
 
         final Context context = getContext();
-        this.adView = new PublisherAdView(context);
+        this.adView = new AdManagerAdView(context);
         this.adView.setAppEventListener(this);
         this.adView.setAdListener(new AdListener() {
             @Override
@@ -118,30 +120,32 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
                 sendOnSizeChangeEvent();
                 WritableMap ad = Arguments.createMap();
                 ad.putString("type", "banner");
-                ad.putString("gadSize", adView.getAdSize().toString());
+
+                WritableMap gadSize = Arguments.createMap();
+                gadSize.putDouble("width", adView.getAdSize().getWidth());
+                gadSize.putDouble("height", adView.getAdSize().getHeight());
+                ad.putMap("gadSize", gadSize);
+
                 sendEvent(RNAdManagerBannerViewManager.EVENT_AD_LOADED, ad);
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                String errorMessage = "Unknown error";
-                switch (errorCode) {
-                    case PublisherAdRequest.ERROR_CODE_INTERNAL_ERROR:
-                        errorMessage = "Internal error, an invalid response was received from the ad server.";
-                        break;
-                    case PublisherAdRequest.ERROR_CODE_INVALID_REQUEST:
-                        errorMessage = "Invalid ad request, possibly an incorrect ad unit ID was given.";
-                        break;
-                    case PublisherAdRequest.ERROR_CODE_NETWORK_ERROR:
-                        errorMessage = "The ad request was unsuccessful due to network connectivity.";
-                        break;
-                    case PublisherAdRequest.ERROR_CODE_NO_FILL:
-                        errorMessage = "The ad request was successful, but no ad was returned due to lack of ad inventory.";
-                        break;
-                }
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                String errorDomain = loadAdError.getDomain();
+                int errorCode = loadAdError.getCode();
+                String errorMessage = loadAdError.getMessage();
+                ResponseInfo responseInfo = loadAdError.getResponseInfo();
+                AdError cause = loadAdError.getCause();
+
                 WritableMap event = Arguments.createMap();
+
                 WritableMap error = Arguments.createMap();
+                error.putString("errorDomain", errorDomain);
+                error.putString("errorCode", errorCode + "");
                 error.putString("message", errorMessage);
+                error.putString("responseInfo", responseInfo.toString());
+                error.putString("cause", cause.toString());
+
                 event.putMap("error", error);
                 sendEvent(RNAdManagerBannerViewManager.EVENT_AD_FAILED_TO_LOAD, event);
             }
@@ -155,28 +159,16 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
             public void onAdClosed() {
                 sendEvent(RNAdManagerBannerViewManager.EVENT_AD_CLOSED, null);
             }
-
-            @Override
-            public void onAdLeftApplication() {
-                sendEvent(RNAdManagerBannerViewManager.EVENT_AD_LEFT_APPLICATION, null);
-            }
         });
-        this.addView(this.adView);
     }
 
     private void sendOnSizeChangeEvent() {
         int width;
         int height;
-        ReactContext reactContext = (ReactContext) getContext();
         WritableMap event = Arguments.createMap();
         AdSize adSize = this.adView.getAdSize();
-        if (adSize == AdSize.SMART_BANNER) {
-            width = (int) PixelUtil.toDIPFromPixel(adSize.getWidthInPixels(reactContext));
-            height = (int) PixelUtil.toDIPFromPixel(adSize.getHeightInPixels(reactContext));
-        } else {
-            width = adSize.getWidth();
-            height = adSize.getHeight();
-        }
+        width = adSize.getWidth();
+        height = adSize.getHeight();
         event.putString("type", "banner");
         event.putDouble("width", width);
         event.putDouble("height", height);
@@ -312,19 +304,10 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
     }
 
     public void LoadBid(@Nullable Bid bid) {
-        PublisherAdRequest.Builder adRequestBuilder = new PublisherAdRequest.Builder();
+        AdManagerAdRequest.Builder adRequestBuilder = new AdManagerAdRequest.Builder();
+
         if (bid != null) {
             Criteo.getInstance().enrichAdObjectWithBid(adRequestBuilder, bid);
-        }
-
-        if (testDevices != null) {
-            for (int i = 0; i < testDevices.length; i++) {
-                String testDevice = testDevices[i];
-                if (testDevice == "SIMULATOR") {
-                    testDevice = PublisherAdRequest.DEVICE_ID_EMULATOR;
-                }
-                adRequestBuilder.addTestDevice(testDevice);
-            }
         }
 
         if (correlator == null) {
@@ -375,7 +358,9 @@ public class BannerAdView extends ReactViewGroup implements AppEventListener, Li
                 adRequestBuilder.setLocation(location);
             }
         }
+
         adView.loadAd(adRequestBuilder.build());
+        this.addView(this.adView);
     }
 
     public void setAdUnitID(String adUnitID) {
