@@ -2,8 +2,12 @@ package com.matejdr.admanager;
 
 import androidx.annotation.Nullable;
 
+import android.content.Context;
 import android.location.Location;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableNativeArray;
@@ -209,7 +213,14 @@ public class RNAdManagerBannerViewManager extends ViewGroupManager<BannerAdView>
             case "smartBannerLandscape":
                 return AdSize.BANNER;
             case "smartBanner":
-                return AdSize.SMART_BANNER;
+                WindowManager windowManager = (WindowManager) applicationContext.getSystemService(Context.WINDOW_SERVICE);
+                Display display = windowManager.getDefaultDisplay();
+                DisplayMetrics outMetrics = new DisplayMetrics();
+                display.getMetrics(outMetrics);
+                float widthPixels = outMetrics.widthPixels;
+                float density = outMetrics.density;
+                int adWidth = (int) (widthPixels / density);
+                return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(applicationContext, adWidth);
             case "300x600":
                 return new AdSize(300, 600);
             case "300x250":
